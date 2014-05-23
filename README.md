@@ -1,6 +1,6 @@
 # Camelscore
 
-Utility functions for converting `under_score` style strings to `camelCase` and the reverse.
+Utility functions for converting `under_score` style strings to `camelCase` and the reverse, as well as on objects.
 
 Also works on objects for converting all property names, as well as stripping or modifying keys before running.
 

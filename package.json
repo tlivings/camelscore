@@ -1,6 +1,6 @@
 {
     "name": "camelscore",
-    "description": "camelCase and under_score utilities.",
+    "description": "camelCase and under_score utilities for objects.",
     "version": "0.1.0",
     "author": "Trevor Livingston <tlivings@gmail.com>",
     "repository": {
