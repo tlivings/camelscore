@@ -1,5 +1,7 @@
 'use strict';
 
+var thing = require('core-util-is');
+
 function filterUndefined(key) {
     return !!key;
 }
@@ -20,14 +22,19 @@ exports = module.exports = {
             };
         }
 
-        if (Array.isArray(obj)) {
+        if (thing.isArray(obj)) {
             newobj = [];
 
             for (var i = 0; i < obj.length; i++) {
-                newobj[i] = exports.camelize(obj[i], mapFn);
+                if (thing.isObject(obj[i])) {
+                    newobj[i] = exports.camelize(obj[i], mapFn);
+                }
+                else {
+                    newobj[i] = obj[i];
+                }
             }
         }
-        else if (typeof obj === 'object') {
+        else if (thing.isObject(obj)) {
             newobj = {};
 
             Object.keys(obj).map(mapFn).filter(filterUndefined).forEach(function (key) {
@@ -57,14 +64,19 @@ exports = module.exports = {
             };
         }
 
-        if (Array.isArray(obj)) {
+        if (thing.isArray(obj)) {
             newobj = [];
 
             for (var i = 0; i < obj.length; i++) {
-                newobj[i] = exports.underscorify(obj[i], mapFn);
+                if (thing.isObject(obj[i])) {
+                    newobj[i] = exports.underscorify(obj[i], mapFn);
+                }
+                else {
+                    newobj[i] = obj[i];
+                }
             }
         }
-        else if (typeof obj === 'object') {
+        else if (thing.isObject(obj)) {
             newobj = {};
 
             Object.keys(obj).map(mapFn).filter(filterUndefined).forEach(function (key) {

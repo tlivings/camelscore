@@ -1,25 +1,28 @@
 {
-    "name": "camelscore",
-    "description": "camelCase and under_score utilities for objects.",
-    "version": "0.1.0",
-    "author": "Trevor Livingston <tlivings@gmail.com>",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/tlivings/camelscore.git"
-    },
-    "bugs" : "https://www.github.com/tlivings/camelscore/issues",
-    "engines": {
-        "node": "0.10.x"
-    },
-    "devDependencies": {
-        "tape": "^2.4.2",
-        "istanbul": "~0.2.3",
-        "jshint": "^2.4.1"
-    },
-    "scripts" : {
-        "test": "tape test/*.js",
-        "cover": "istanbul cover tape -- test/*.js",
-        "lint": "jshint -c .jshintrc index.js lib/"
-    },
-    "main": "./lib/index"
+  "name": "camelscore",
+  "description": "camelCase and under_score utilities for objects.",
+  "version": "0.1.1",
+  "author": "Trevor Livingston <tlivings@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tlivings/camelscore.git"
+  },
+  "bugs": "https://www.github.com/tlivings/camelscore/issues",
+  "engines": {
+    "node": "0.10.x"
+  },
+  "dependencies": {
+    "core-util-is": "^1.0.1"
+  },
+  "devDependencies": {
+    "tape": "^2.4.2",
+    "istanbul": "~0.2.3",
+    "jshint": "^2.4.1"
+  },
+  "scripts": {
+    "test": "tape test/*.js",
+    "cover": "istanbul cover tape -- test/*.js",
+    "lint": "jshint -c .jshintrc index.js lib/"
+  },
+  "main": "./lib/index"
 }

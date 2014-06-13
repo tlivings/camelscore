@@ -58,11 +58,12 @@ test('test', function (t) {
                 },
                 {
                     bar: 'baz'
-                }
+                },
+                'fooBar'
             ]
         });
 
-        assert.plan(7);
+        assert.plan(8);
 
         assert.ok(obj, 'underscorify returned something.');
         assert.strictEqual(typeof obj, 'object', 'underscorify returned an object.');
@@ -71,6 +72,7 @@ test('test', function (t) {
         assert.ok(obj.hasOwnProperty('qux_qax'), 'has qux_qax.');
         assert.ok(obj.qux_qax[0].hasOwnProperty('foo_qux'), 'has foo_qux.');
         assert.ok(obj.qux_qax[1].hasOwnProperty('bar'), 'has bar.');
+        assert.strictEqual(obj.qux_qax[2], 'fooBar', 'did not underscorify non object in array.');
     });
 
     t.test('camelize', function (assert) {
@@ -86,11 +88,12 @@ test('test', function (t) {
                 },
                 {
                     bar: 'baz'
-                }
+                },
+                'foo_bar'
             ]
         });
 
-        assert.plan(7);
+        assert.plan(8);
 
         assert.ok(obj, 'camelize return something.');
         assert.strictEqual(typeof obj, 'object', 'camelize returned an object.');
@@ -99,6 +102,7 @@ test('test', function (t) {
         assert.ok(obj.hasOwnProperty('quxQax'), 'has quxQax.');
         assert.ok(obj.quxQax[0].hasOwnProperty('fooQux'), 'has fooQux.');
         assert.ok(obj.quxQax[1].hasOwnProperty('bar'), 'has bar.');
+        assert.strictEqual(obj.quxQax[2], 'foo_bar', 'did not camelize non object in array.');
     });
 
     t.test('camelize with map function.', function (assert) {
