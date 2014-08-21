@@ -26,7 +26,7 @@ exports = module.exports = {
             newobj = [];
 
             for (var i = 0; i < obj.length; i++) {
-                if (thing.isObject(obj[i])) {
+                if (obj[i] && thing.isObject(obj[i])) {
                     newobj[i] = exports.camelize(obj[i], mapFn);
                 }
                 else {
