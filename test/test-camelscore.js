@@ -141,4 +141,16 @@ test('test', function (t) {
         assert.ok(!obj.foo_bar.bar_baz.hasOwnProperty('bad'), 'filtered out.');
     });
 
+    t.test('camelize skips buffers', function (assert) {
+        assert.plan(1);
+
+        assert.ok(Buffer.isBuffer(camelscore.camelize(new Buffer(10))), 'came back a buffer.');
+    });
+
+    t.test('underscorify skips buffers', function (assert) {
+        assert.plan(1);
+
+        assert.ok(Buffer.isBuffer(camelscore.underscorify(new Buffer(10))), 'came back a buffer.');
+    });
+
 });

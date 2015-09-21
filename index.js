@@ -34,7 +34,7 @@ exports = module.exports = {
                 }
             }
         }
-        else if (thing.isObject(obj)) {
+        else if (thing.isObject(obj) && !Buffer.isBuffer(obj)) {
             newobj = {};
 
             Object.keys(obj).map(mapFn).filter(filterUndefined).forEach(function (key) {
@@ -76,7 +76,7 @@ exports = module.exports = {
                 }
             }
         }
-        else if (thing.isObject(obj)) {
+        else if (thing.isObject(obj) && !Buffer.isBuffer(obj)) {
             newobj = {};
 
             Object.keys(obj).map(mapFn).filter(filterUndefined).forEach(function (key) {
