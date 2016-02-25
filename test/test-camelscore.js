@@ -8,7 +8,7 @@ test('test', function (t) {
     t.test('camelCase', function (assert) {
         var str = camelscore.camelCase('foo_bar');
 
-        assert.plan(4);
+        assert.plan(5);
 
         assert.strictEqual(str, 'fooBar', 'camel cased 1 underscore.');
 
@@ -23,6 +23,10 @@ test('test', function (t) {
         str = camelscore.camelCase('foo_bar_baz_');
 
         assert.strictEqual(str, 'fooBarBaz_', 'camel cased and left trailing _.');
+
+        str = camelscore.camelCase('is_2FA_login');
+
+        assert.strictEqual(str, 'is2FALogin', 'camel cased uppercase words with 2 underscores.');
     });
 
     t.test('underscore', function (assert) {
