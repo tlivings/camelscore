@@ -98,7 +98,7 @@ exports = module.exports = {
      * @returns {string|*}
      */
     camelCase: function camelCase(str) {
-        return str.replace(/([a-z])_(\w)/g, function (g) {
+        return str.replace(/([a-zA-Z0-9])_(\w)/g, function (g) {
             return g[0] + g[2].toUpperCase();
         });
     },
