@@ -2,10 +2,6 @@
 
 var thing = require('core-util-is');
 
-function filterUndefined(key) {
-    return !!key;
-}
-
 exports = module.exports = {
 
     /**
@@ -14,7 +10,7 @@ exports = module.exports = {
      * @param mapFn map keys, return undefined to not include.
      */
     camelize: function camelize(obj, mapFn) {
-        var newobj;
+        var newobj, keys, k;
 
         if (!mapFn) {
             mapFn = function (k) {
@@ -36,12 +32,16 @@ exports = module.exports = {
         }
         else if (thing.isObject(obj) && !Buffer.isBuffer(obj)) {
             newobj = {};
+            keys = Object.keys(obj);
 
-            Object.keys(obj).map(mapFn).filter(filterUndefined).forEach(function (key) {
-                var newkey = exports.camelCase(key);
-
-                newobj[newkey] = exports.camelize(obj[key], mapFn);
-            });
+            for (var i = 0; i < keys.length; i++) {
+                k = mapFn(keys[i]);
+                if (!k) {
+                    continue;
+                }
+                k = exports.camelCase(k);
+                newobj[k] = exports.camelize(obj[keys[i]], mapFn);
+            }
         }
         else {
             newobj = obj;
@@ -56,7 +56,7 @@ exports = module.exports = {
      * @param mapFn map keys, return undefined to not include.
      */
     underscorify: function (obj, mapFn) {
-        var newobj;
+        var newobj, keys, k;
 
         if (!mapFn) {
             mapFn = function (k) {
@@ -78,12 +78,16 @@ exports = module.exports = {
         }
         else if (thing.isObject(obj) && !Buffer.isBuffer(obj)) {
             newobj = {};
+            keys = Object.keys(obj);
 
-            Object.keys(obj).map(mapFn).filter(filterUndefined).forEach(function (key) {
-                var newkey = exports.underscore(key);
-
-                newobj[newkey] = exports.underscorify(obj[key], mapFn);
-            });
+            for (var i = 0; i < keys.length; i++) {
+                k = mapFn(keys[i]);
+                if (!k) {
+                    continue;
+                }
+                k = exports.underscore(k);
+                newobj[k] = exports.underscorify(obj[keys[i]], mapFn);
+            }
         }
         else {
             newobj = obj;
@@ -98,7 +102,7 @@ exports = module.exports = {
      * @returns {string|*}
      */
     camelCase: function camelCase(str) {
-        return str.replace(/([a-z])_(\w)/g, function (g) {
+        return str.replace(/([aA-zZ])_(\w)/g, function (g) {
             return g[0] + g[2].toUpperCase();
         });
     },
@@ -109,8 +113,10 @@ exports = module.exports = {
      * @returns {string|*}
      */
     underscore: function underscore(str) {
-        return str.replace(/([a-z])([A-Z]+)/g, function (g) {
-            return g[0] + '_' + g[1].toLowerCase();
+        return str.replace(/([a-z])([A-Z0-9]+)/g, function (g) {
+            return g.split('').map(function (k) {
+                return k.toLowerCase();
+            }).join('_');
         });
     }
 };
