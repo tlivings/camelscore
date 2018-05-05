@@ -8,17 +8,13 @@ test('test', function (t) {
     t.test('camelCase', function (assert) {
         var str = camelscore.camelCase('foo_bar');
 
-        assert.plan(5);
+        assert.plan(4);
 
         assert.strictEqual(str, 'fooBar', 'camel cased 1 underscore.');
 
         str = camelscore.camelCase('foo_bar_baz');
 
         assert.strictEqual(str, 'fooBarBaz', 'camel cased 2 underscores.');
-
-        str = camelscore.camelCase('is_2FA_login');
-
-        assert.strictEqual(str, 'is2FALogin', 'camel cased 2 underscores with a caps.');
 
         str = camelscore.camelCase('_foo_bar_baz');
 
@@ -32,18 +28,13 @@ test('test', function (t) {
     t.test('underscore', function (assert) {
         var str = camelscore.underscore('fooBar');
 
-        assert.plan(5);
+        assert.plan(4);
 
         assert.strictEqual(str, 'foo_bar', 'underscore cased with 1 hump.');
 
         str = camelscore.underscore('fooBarBaz');
 
         assert.strictEqual(str, 'foo_bar_baz', 'underscore cased with 2 humps.');
-
-        str = camelscore.underscore('is2FALogin');
-
-        //This sucks but is reality
-        assert.strictEqual(str, 'is_2_f_a_login', 'underscore cased with 2 humps and caps.');
 
         str = camelscore.underscore('_fooBaredBaz');
 

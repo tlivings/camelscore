@@ -102,7 +102,7 @@ exports = module.exports = {
      * @returns {string|*}
      */
     camelCase: function camelCase(str) {
-        return str.replace(/([aA-zZ])_(\w)/g, function (g) {
+        return str.replace(/([a-z])_(\w)/g, function (g) {
             return g[0] + g[2].toUpperCase();
         });
     },
@@ -113,7 +113,7 @@ exports = module.exports = {
      * @returns {string|*}
      */
     underscore: function underscore(str) {
-        return str.replace(/([a-z])([A-Z0-9]+)/g, function (g) {
+        return str.replace(/([a-z])([A-Z]+)/g, function (g) {
             return g.split('').map(function (k) {
                 return k.toLowerCase();
             }).join('_');
